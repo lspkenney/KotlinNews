@@ -26,6 +26,7 @@ class NewsFragment : Fragment(){
 
     companion object {//类似java的static
         private var KEY_ALL_NEWS = "allNews"
+        fun newInstance() = NewsFragment()
     }
 
 
@@ -80,7 +81,7 @@ class NewsFragment : Fragment(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({ retrievedNews ->
-                    //var appNews = retrievedNews
+                    allNews = retrievedNews
                     (newsList.adapter as NewsAdapter).addNews(retrievedNews.news)
                 },{ error ->
                     //Toast.makeText(context, error.message?: "", Toast.LENGTH_SHORT).show()
